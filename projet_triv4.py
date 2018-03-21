@@ -1,4 +1,4 @@
-et Tri - Base de la programmation - Eric Derasse (2017)
+
 # Auteurs :
 
 # codage utilisé pour les accents
@@ -79,7 +79,7 @@ def selectMenuTriRapide(maTable):
     print ("Voici les nombres selectionnes : ")
     print (maTable)
     start_time = time.time()
-    triRapide(maTable,0,len(maTable)-1)
+    TriRapide(maTable,0,len(maTable)-1)
     print("Voici les nombres tries : ")
     print (maTable)
     process=(time.time() - start_time)
@@ -111,12 +111,54 @@ def Reverse(maTable):
         i = i + 1
         x = x - 1
     print (maTable)
-        
-def triRapide(maTable, left, right):
+
     
-    #méthode de tri rapide récursive à complèter
- 
-      
+
+    
+
+ #méthode de tri rapide récursive à complèter
+    
+        
+def TriRapide(tableau,premier,dernier):
+   if premier<dernier:
+       pivot = partitionement(tableau,premier,dernier)
+
+       TriRapide(tableau,premier,pivot-1)
+       TriRapide(tableau,pivot+1,dernier)
+
+
+
+
+def partitionement(tableau,premier,dernier):
+   pivot = tableau[premier]
+
+   gauche = premier+1
+   droite = dernier
+
+   fini = False
+   while not fini:
+
+       while gauche <= droite and tableau[gauche] <= pivot:
+           gauche = gauche + 1
+
+       while tableau[droite] >= pivot and droite >= gauche:
+           droite = droite -1
+
+       if droite < gauche:
+           fini = True
+       else:
+           temp = tableau[gauche]
+           tableau[gauche] = tableau[droite]
+           tableau[droite] = temp
+
+   temp = tableau[premier]
+   tableau[premier] = tableau[droite]
+   tableau[droite] = temp
+
+
+   return droite
+
+   
 #**********************************************************************
 # Couche données (Data)
 #**********************************************************************			
